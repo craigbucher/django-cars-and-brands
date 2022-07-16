@@ -1,0 +1,23 @@
+{% extends "pages/brands/base.html" %} 
+
+{% block title %} 
+All Car Models for {{ brand.name }} 
+{% endblock %} 
+
+{% block main-content %}
+
+<h2>Brand: {{ brand.name }}</h2>
+<h3>Models</h3>
+{% if brand.car_models.all|length == 0 %}
+  <p>[none]</p>
+{% else %}
+<ul>
+  {% for m in brand.car_models.all %}
+  <li><a href="{% url 'cars:model_detail' brand_id=m.brand.id model_id=m.id %}">{{ m.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<a href="{% url 'cars:model_new' brand.id %}"><button>Add Model</button></a>
+<hr>
+{% endblock %}

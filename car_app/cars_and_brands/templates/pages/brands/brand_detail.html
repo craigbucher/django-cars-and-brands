@@ -1,9 +1,11 @@
-{% extends "base.html" %} {% block page-title %} {{ b.name }} {% endblock %} {%
-block main-content %}
-<h3>Brand: {{ b.brand.name }}</h3>
-<ul>
-  {% for m in brand.car_models %}
-  <li>{{ m.name }}</li>
-  {% endfor %}
-</ul>
+{% extends "pages/brands/base.html" %} 
+{% block title %} {{ brand.name }} {% endblock %} 
+{% block main-content %}
+<h2>Brand: {{ brand.name }}</h2>
+<h4>Description: {{ brand.description }}</h4>
+
+<hr>
+<a href="{% url 'cars:brand_edit' brand.id %}"><button>Edit Brand</button></a>
+<a href="{% url 'cars:model_list' brand.id %}"><button>View Models</button></a>
+<hr>
 {% endblock %}

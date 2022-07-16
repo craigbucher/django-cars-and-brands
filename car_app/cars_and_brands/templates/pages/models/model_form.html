@@ -1,17 +1,17 @@
 {% extends "pages/brands/base.html" %} 
 {% block title %}
 {% if create_or_update %}
-Create Brand
+Create Model
 {% else %}
-Update Brand
+Update Model
 {% endif %}
 {% endblock %} 
 {% block main-content %}
 <h1>
 {% if create_or_update %}
-Create New Brand:
+Create New Model:
 {% else %}
-Update Brand: {{ brand.name }}
+Update Model: {{ model.name }}
 </h1>
 {% endif %}
 
@@ -22,9 +22,9 @@ Update Brand: {{ brand.name }}
 </form>
 <button type='submit'>
     {% if create_or_update %}
-    Add Brand
+    Add Model
     {% else %}
-    Update Brand
+    Update Model
     {% endif %}
 </button>
 

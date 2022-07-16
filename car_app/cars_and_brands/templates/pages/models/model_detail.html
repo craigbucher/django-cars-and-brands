@@ -1,0 +1,13 @@
+{% extends "pages/brands/base.html" %} 
+{% block title %} 
+{{ model.brand.name }}:{{ model.name }} 
+{% endblock %} 
+
+{% block main-content %}
+<h2>Model: {{ model.name }}</h2>
+<h2>Brand: {{ model.brand.name }}</h2>
+
+<hr>
+<a href="{% url 'cars:model_edit' brand_id=model.brand.id model_id=model.id %}"><button>Edit Model</button></a>
+<hr>
+{% endblock %}
