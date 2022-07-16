@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block page-title %} {{ b.name }} {% endblock %} {%
+block main-content %}
+<h3>Brand: {{ b.brand.name }}</h3>
+<ul>
+  {% for m in brand.car_models %}
+  <li>{{ m.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
