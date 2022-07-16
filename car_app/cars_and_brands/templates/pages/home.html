@@ -1,0 +1,10 @@
+{% extends "pages/base.html" %} 
+{% block title %} 
+Brands and Models 
+{% endblock %} 
+{% block main-content %}
+
+<h1>Welcome to my home page</h1>
+<a href="{% url 'cars:brand_list' %}">View Brands</a>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from cars_and_brands.forms import CarBrandForm, CarModelForm
 
 # Create your views here.
 def index(request):
-    return HttpResponse('Home Page')
+    return render(request, "pages/home.html")
 
 # brand
 def brands(request):
@@ -89,7 +89,7 @@ def model_new(request, brand_id):
     if (request.method == 'POST'):
         try:
             form.save()
-            return redirect('cars:model_list', brand_id=brand_id)
+            return redirect('cars:model_list', brand_id=form.instance.brand.id)
         except:
             return HttpResponse('Error creating new model!')
     else:
@@ -116,4 +116,26 @@ def model_detail(request, brand_id, model_id):
     return render(request, "pages/models/model_detail.html", data)
 
 def model_edit(request, brand_id, model_id):
-    return HttpResponse('Model edit form goes here')
+    try:
+        model = CarModel.objects.get(pk=model_id)
+    except:
+        print('error')
+        return HttpResponse("That car model doesn't exist!")
+
+    form = CarModelForm(request.POST or None, instance=model)
+
+    if (request.method == 'POST'):
+        try:
+            form.save()
+            return redirect('cars:model_detail', brand_id=brand_id, model_id=model_id)
+        except:
+            return HttpResponse('Error creating new model!')
+    else:
+        form.brand = CarBrand.objects.get(pk=brand_id)
+
+    data = {
+        "create_or_update": False,
+        "form": form
+    }
+
+    return render(request, "pages/models/model_form.html", data)
